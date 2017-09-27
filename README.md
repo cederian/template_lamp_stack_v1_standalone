@@ -1,0 +1,1 @@
+# template_lamp_stack_v1_standalone
