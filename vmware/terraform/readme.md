@@ -1,4 +1,4 @@
-# Template - LAMP Deployment on a Single VM
+# Template - LAMP Deployment on a single virtual machine
 Template Version - 1.0
 
 ## Description
@@ -18,7 +18,6 @@ This template deploys Oracle MySQL Database V5.7 and Apache HTTP Server V2.4 on 
 ### Operating Systems Supported
 
 Red Hat Enterprise Linux 7<br>
-Red Hat Enterprise Linux 6<br>
 Ubuntu 16.04<br>
 <br>
 ### Topology
@@ -40,8 +39,9 @@ Oracle MySQL 5.7<br>
 ### Usage and Special Notes
 
 1. The user is responsible for obtaining appropriate software licenses and downloads prior to template deployment.<br>
-2. Detailed system requirements for Oracle Database V12c - https://dev.mysql.com/doc/refman/5.7/en/<br>
-3. Detailed system requirements for Apache HTTPd - https://projects.apache.org/project.html?httpd-http_server<br>
+2. Detailed system requirements for Oracle Database V5.7 - <a href=\"https://dev.mysql.com/doc/refman/5.7/en/\" target=\"_blank\">https://dev.mysql.com/doc/refman/5.7/en/</a><br>
+3. Detailed system requirements for Apache HTTPd - <a href=\"https://projects.apache.org/project.html?httpd-http_server\" target=\"_blank\">https://projects.apache.org/project.html?httpd-http_server</a><br>
+<br>
 
 
 ## Overview
