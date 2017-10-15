@@ -168,6 +168,8 @@
       "secured": true,
       "required": true,
       "immutable": false,
+      "regex": "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&]{8,}$",
+      "regexdesc": "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character.",
       "group_name": "lampnode01"
     },
     {
@@ -465,6 +467,8 @@
       "secured": true,
       "required": true,
       "immutable": false,
+      "regex": "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&]{8,}$",
+      "regexdesc": "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character.",
       "group_name": "lampnode01"
     },
     {
@@ -569,6 +573,8 @@
       "secured": true,
       "required": true,
       "immutable": false,
+      "regex": "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&]{8,}$",
+      "regexdesc": "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character.",
       "group_name": "lampnode01"
     },
     {
@@ -742,7 +748,7 @@
       "name": "LAMPNode01_memory",
       "type": "string",
       "description": "Memory assigned to the virtual machine in megabytes. This value is required to be an increment of 1024",
-      "default": 2048,
+      "default": 4096,
       "hidden": false,
       "label": "Virtual Machine Memory - LAMPNode01",
       "secured": false,

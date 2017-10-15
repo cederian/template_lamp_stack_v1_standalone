@@ -1,4 +1,4 @@
-# Template - LAMP Deployment on a single virtual machine
+# Template - LAMP on a single virtual machine
 Template Version - 1.0
 
 ## Description
@@ -29,18 +29,18 @@ Ubuntu 16.04<br>
 <br>
 ### Software Deployed
 
-Apache HTTP Server Version 2.4, with PHP Module<br>
-Oracle MySQL 5.7<br>
+Apache HTTP Server Version V2.4, with PHP Module<br>
+Oracle MySQL V5.7<br>
 <br>
 ### Default Virtual Machine Settings
 
- vCPU = 2, Memory = 4GB, Storage = 25GB<br>
+ vCPU 2, Memory (GB) 4<br>
 <br>
 ### Usage and Special Notes
 
 1. The user is responsible for obtaining appropriate software licenses and downloads prior to template deployment.<br>
 2. Detailed system requirements for Oracle Database V5.7 - <a href=\"https://dev.mysql.com/doc/refman/5.7/en/\" target=\"_blank\">https://dev.mysql.com/doc/refman/5.7/en/</a><br>
-3. Detailed system requirements for Apache HTTPd - <a href=\"https://projects.apache.org/project.html?httpd-http_server\" target=\"_blank\">https://projects.apache.org/project.html?httpd-http_server</a><br>
+3. Detailed system requirements for Apache HTTP Server - <a href=\"https://projects.apache.org/project.html?httpd-http_server\" target=\"_blank\">https://projects.apache.org/project.html?httpd-http_server</a><br>
 <br>
 
 
