@@ -35,7 +35,7 @@ variable "allow_unverified_ssl" {
 ##############################################################
 provider "vsphere" {
   allow_unverified_ssl = "${var.allow_unverified_ssl}"
-  version = "~> 0.4"
+  version              = "~> 0.4"
 }
 
 provider "camc" {
@@ -57,8 +57,6 @@ resource "random_id" "stack_id" {
 variable "ibm_stack_name" {
   description = "A unique stack name."
 }
-
-#### Default OS Admin User Map ####
 
 ##### Environment variables #####
 #Variable : ibm_pm_access_token
@@ -240,14 +238,7 @@ variable "LAMPNode01_mysql_config_databases_database_1_users_user_1_name" {
 #Variable : LAMPNode01_mysql_config_databases_database_1_users_user_1_password
 variable "LAMPNode01_mysql_config_databases_database_1_users_user_1_password" {
   type        = "string"
-  description = "Password of the first user"
-}
-
-#Variable : LAMPNode01_mysql_config_databases_database_1_users_user_2_name
-variable "LAMPNode01_mysql_config_databases_database_1_users_user_2_name" {
-  type        = "string"
-  description = "Name of the second user which is created and allowed to access the created sample database"
-  default     = "defaultUser2"
+  description = "Name of the first user which is created and allowed to access the created sample database"
 }
 
 #Variable : LAMPNode01_mysql_config_databases_database_1_users_user_2_password
@@ -325,14 +316,11 @@ variable "LAMPNode01_mysql_version" {
   default     = "5.7.17"
 }
 
+##### virtualmachine variables #####
+
 #########################################################
 ##### Resource : LAMPNode01
 #########################################################
-
-variable "LAMPNode01_domain" {
-  type        = "string"
-  description = "Domain Name of virtual machine"
-}
 
 variable "LAMPNode01-os_password" {
   type        = "string"
@@ -345,6 +333,10 @@ variable "LAMPNode01_folder" {
 
 variable "LAMPNode01_datacenter" {
   description = "Target vSphere datacenter for virtual machine creation"
+}
+
+variable "LAMPNode01_domain" {
+  description = "Domain Name of virtual machine"
 }
 
 variable "LAMPNode01_number_of_vcpu" {
@@ -389,7 +381,7 @@ variable "LAMPNode01_ipv4_prefix_length" {
 
 variable "LAMPNode01_adapter_type" {
   description = "Network adapter type for vNIC Configuration"
-  default = "vmxnet3"
+  default     = "vmxnet3"
 }
 
 variable "LAMPNode01_root_disk_datastore" {
@@ -416,22 +408,22 @@ variable "LAMPNode01_root_disk_keep_on_remove" {
 
 # vsphere vm
 resource "vsphere_virtual_machine" "LAMPNode01" {
-  name = "${var.LAMPNode01-name}"
-  domain = "${var.LAMPNode01_domain}"
-  folder = "${var.LAMPNode01_folder}"
-  datacenter = "${var.LAMPNode01_datacenter}"
-  vcpu = "${var.LAMPNode01_number_of_vcpu}"
-  memory = "${var.LAMPNode01_memory}"
-  cluster = "${var.LAMPNode01_cluster}"
+  name         = "${var.LAMPNode01-name}"
+  domain       = "${var.LAMPNode01_domain}"
+  folder       = "${var.LAMPNode01_folder}"
+  datacenter   = "${var.LAMPNode01_datacenter}"
+  vcpu         = "${var.LAMPNode01_number_of_vcpu}"
+  memory       = "${var.LAMPNode01_memory}"
+  cluster      = "${var.LAMPNode01_cluster}"
   dns_suffixes = "${var.LAMPNode01_dns_suffixes}"
-  dns_servers = "${var.LAMPNode01_dns_servers}"
+  dns_servers  = "${var.LAMPNode01_dns_servers}"
 
   network_interface {
     label              = "${var.LAMPNode01_network_interface_label}"
     ipv4_gateway       = "${var.LAMPNode01_ipv4_gateway}"
     ipv4_address       = "${var.LAMPNode01_ipv4_address}"
     ipv4_prefix_length = "${var.LAMPNode01_ipv4_prefix_length}"
-    adapter_type = "${var.LAMPNode01_adapter_type}"
+    adapter_type       = "${var.LAMPNode01_adapter_type}"
   }
 
   disk {
@@ -451,7 +443,8 @@ resource "vsphere_virtual_machine" "LAMPNode01" {
 
   provisioner "file" {
     destination = "LAMPNode01_add_ssh_key.sh"
-    content     = <<EOF
+
+    content = <<EOF
 # =================================================================
 # Licensed Materials - Property of IBM
 # 5737-E67
@@ -554,10 +547,10 @@ EOT
 #########################################################
 
 resource "camc_softwaredeploy" "LAMPNode01_httpd24-base-install" {
-  depends_on = ["camc_bootstrap.LAMPNode01_chef_bootstrap_comp"]
-  name = "LAMPNode01_httpd24-base-install"
-  camc_endpoint = "${var.ibm_pm_service}/v1/software_deployment/chef"
-  access_token = "${var.ibm_pm_access_token}"
+  depends_on      = ["camc_bootstrap.LAMPNode01_chef_bootstrap_comp"]
+  name            = "LAMPNode01_httpd24-base-install"
+  camc_endpoint   = "${var.ibm_pm_service}/v1/software_deployment/chef"
+  access_token    = "${var.ibm_pm_access_token}"
   skip_ssl_verify = true
   trace           = true
 
@@ -617,10 +610,10 @@ EOT
 #########################################################
 
 resource "camc_softwaredeploy" "LAMPNode01_oracle_mysql_base" {
-  depends_on = ["camc_softwaredeploy.LAMPNode01_httpd24-base-install"]
-  name = "LAMPNode01_oracle_mysql_base"
-  camc_endpoint = "${var.ibm_pm_service}/v1/software_deployment/chef"
-  access_token = "${var.ibm_pm_access_token}"
+  depends_on      = ["camc_softwaredeploy.LAMPNode01_httpd24-base-install"]
+  name            = "LAMPNode01_oracle_mysql_base"
+  camc_endpoint   = "${var.ibm_pm_service}/v1/software_deployment/chef"
+  access_token    = "${var.ibm_pm_access_token}"
   skip_ssl_verify = true
   trace           = true
 
@@ -649,9 +642,6 @@ resource "camc_softwaredeploy" "LAMPNode01_oracle_mysql_base" {
             "users": {
               "user_1": {
                 "name": "${var.LAMPNode01_mysql_config_databases_database_1_users_user_1_name}"
-              },
-              "user_2": {
-                "name": "${var.LAMPNode01_mysql_config_databases_database_1_users_user_2_name}"
               }
             }
           }

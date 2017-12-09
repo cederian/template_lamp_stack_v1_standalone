@@ -12,10 +12,6 @@
       "label": "Cloud Input Variables"
     },
     {
-      "name": "virtualmachine",
-      "label": "Virtual Machine Input Variables"
-    },
-    {
       "name": "ssh_keys",
       "label": "SSH Keys"
     },
@@ -26,6 +22,10 @@
     {
       "name": "lampnode01",
       "label": "LAMPNode01"
+    },
+    {
+      "name": "virtualmachine",
+      "label": "Virtual Machine Input Variables"
     }
   ],
   "output_groups": [
@@ -161,21 +161,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "lampnode01"
-    },
-    {
-      "name": "LAMPNode01_mysql_config_databases_database_1_users_user_1_password",
-      "type": "string",
-      "description": "Password of the first user",
-      "hidden": false,
-      "label": "First User Password to Access the Sample Database - LAMPNode01",
-      "secured": true,
-      "required": true,
-      "immutable": false,
-      "regex": "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&]{8,}$",
-      "regexdesc": "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character.",
-      "immutable_after_create": true,
       "group_name": "lampnode01"
     },
     {
@@ -581,13 +566,14 @@
       "group_name": "lampnode01"
     },
     {
-      "name": "LAMPNode01_mysql_config_databases_database_1_users_user_2_name",
+      "name": "LAMPNode01_mysql_config_databases_database_1_users_user_1_password",
       "type": "string",
-      "description": "Name of the second user which is created and allowed to access the created sample database",
-      "default": "defaultUser2",
+      "description": "Name of the first user which is created and allowed to access the created sample database",
       "hidden": false,
-      "label": "Second User Name to Access the Sample Database - LAMPNode01",
-      "secured": false,
+      "label": "First User Name to Access the Sample Database - LAMPNode01",
+      "secured": true,
+      "regex": "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&]{8,}$",
+      "regexdesc": "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character.",
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
@@ -893,6 +879,7 @@
       "secured": false,
       "required": true,
       "immutable": false,
+      "immutable_after_create": true,
       "group_name": "ssh_keys"
     }
   ],

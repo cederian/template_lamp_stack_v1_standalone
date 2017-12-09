@@ -12,10 +12,6 @@
       "label": "Cloud Input Variables"
     },
     {
-      "name": "virtualmachine",
-      "label": "Virtual Machine Input Variables"
-    },
-    {
       "name": "ssh_keys",
       "label": "SSH Keys"
     },
@@ -26,6 +22,10 @@
     {
       "name": "lampnode01",
       "label": "LAMPNode01"
+    },
+    {
+      "name": "virtualmachine",
+      "label": "Virtual Machine Input Variables"
     },
     {
       "name": "ungrouped",
@@ -97,21 +97,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "lampnode01"
-    },
-    {
-      "name": "LAMPNode01_mysql_config_databases_database_1_users_user_1_password",
-      "type": "string",
-      "description": "Password of the first user",
-      "hidden": false,
-      "label": "First User Password to Access the Sample Database - LAMPNode01",
-      "secured": true,
-      "required": true,
-      "immutable": false,
-      "regex": "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&]{8,}$",
-      "regexdesc": "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character.",
-      "immutable_after_create": true,
       "group_name": "lampnode01"
     },
     {
@@ -344,30 +329,6 @@
       "group_name": "environment"
     },
     {
-      "name": "LAMPNode01_local_disk",
-      "type": "string",
-      "description": "User local disk or SAN disk",
-      "default": "false",
-      "hidden": false,
-      "label": "IBMCloud - Local / SAN Disk - LAMPNode01",
-      "secured": false,
-      "options": [
-        {
-          "value": "true",
-          "label": "True"
-        },
-        {
-          "value": "false",
-          "label": "False",
-          "default": "true"
-        }
-      ],
-      "required": true,
-      "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "lampnode01"
-    },
-    {
       "name": "LAMPNode01_datacenter",
       "type": "string",
       "description": "IBMCloud datacenter where infrastructure resources will be deployed",
@@ -504,8 +465,7 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "lampnode01"
+      "group_name": "cloud"
     },
     {
       "name": "LAMPNode01_dedicated_acct_host_only",
@@ -528,8 +488,7 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "lampnode01"
+      "group_name": "cloud"
     },
     {
       "name": "LAMPNode01_hourly_billing",
@@ -552,8 +511,7 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "lampnode01"
+      "group_name": "cloud"
     },
     {
       "name": "LAMPNode01_network_speed",
@@ -576,8 +534,7 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "lampnode01"
+      "group_name": "cloud"
     },
     {
       "name": "LAMPNode01_private_network_only",
@@ -600,8 +557,7 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "lampnode01"
+      "group_name": "cloud"
     },
     {
       "name": "LAMPNode01_memory",
@@ -644,8 +600,7 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "lampnode01"
+      "group_name": "cloud"
     },
     {
       "name": "LAMPNode01_number_of_cores",
@@ -688,8 +643,7 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "lampnode01"
+      "group_name": "cloud"
     },
     {
       "name": "LAMPNode01_mysql_install_from_repo",
@@ -828,18 +782,17 @@
       "options": [
         {
           "value": "25",
-          "label": "25 GB",
-          "default": true
+          "label": "25 GB"
         },
         {
           "value": "100",
-          "label": "100 GB"
+          "label": "100 GB",
+          "default": true
         }
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "lampnode01"
+      "group_name": "cloud"
     },
     {
       "name": "LAMPNode01_mysql_config_databases_database_1_database_name",
@@ -855,13 +808,14 @@
       "group_name": "lampnode01"
     },
     {
-      "name": "LAMPNode01_mysql_config_databases_database_1_users_user_2_name",
+      "name": "LAMPNode01_mysql_config_databases_database_1_users_user_1_password",
       "type": "string",
-      "description": "Name of the second user which is created and allowed to access the created sample database",
-      "default": "defaultUser2",
+      "description": "Name of the first user which is created and allowed to access the created sample database",
       "hidden": false,
-      "label": "Second User Name to Access the Sample Database - LAMPNode01",
-      "secured": false,
+      "label": "First User Name to Access the Sample Database - LAMPNode01",
+      "secured": true,
+      "regex": "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&]{8,}$",
+      "regexdesc": "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character.",
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
@@ -926,30 +880,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "lampnode01"
-    },
-    {
-      "name": "LAMPNode01-mgmt-network-public",
-      "type": "string",
-      "description": "Expose and use public IP of virtual machine for internal communication",
-      "default": "true",
-      "hidden": false,
-      "label": "Use Public Management Network - LAMPNode01",
-      "secured": false,
-      "options": [
-        {
-          "value": false,
-          "label": false
-        },
-        {
-          "value": true,
-          "label": true
-        }
-      ],
-      "required": true,
-      "immutable": false,
-      "immutable_after_create": true,
       "group_name": "lampnode01"
     },
     {
@@ -979,6 +909,29 @@
       "group_name": "lampnode01"
     },
     {
+      "name": "LAMPNode01_local_disk",
+      "type": "string",
+      "description": "User local disk or SAN disk",
+      "default": "false",
+      "hidden": false,
+      "label": "IBMCloud - Local / SAN Disk - LAMPNode01",
+      "secured": false,
+      "options": [
+        {
+          "value": "true",
+          "label": "True"
+        },
+        {
+          "value": "false",
+          "label": "False",
+          "default": "true"
+        }
+      ],
+      "required": true,
+      "immutable": false,
+      "group_name": "cloud"
+    },
+    {
       "name": "ibm_pm_private_ssh_key",
       "type": "string",
       "description": "Private CAMC SSH key (base64 encoded) used to connect to the virtual guest.",
@@ -1003,6 +956,28 @@
       "default": "${advanced_content_runtime_chef.ibm_pm_public_ssh_key_name}"
     },
     {
+      "name": "LAMPNode01-mgmt-network-public",
+      "type": "string",
+      "description": "Expose and use public IP of virtual machine for internal communication",
+      "default": "true",
+      "hidden": false,
+      "label": "Use Public Management Network",
+      "secured": false,
+      "options": [
+        {
+          "value": false,
+          "label": false
+        },
+        {
+          "value": true,
+          "label": true
+        }
+      ],
+      "required": true,
+      "immutable": false,
+      "group_name": "virtualmachine"
+    },
+    {
       "name": "user_public_ssh_key",
       "type": "string",
       "description": "User defined public SSH key used to connect to the virtual machine. The format must be in openSSH.",
@@ -1012,6 +987,7 @@
       "secured": false,
       "required": true,
       "immutable": false,
+      "immutable_after_create": true,
       "group_name": "ssh_keys"
     },
     {
