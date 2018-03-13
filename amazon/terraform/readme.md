@@ -1,5 +1,5 @@
 # Template - LAMP Deployment on a single virtual machine
-Template Version - 1.0
+Template Version - 2.0
 
 ## Description
 
@@ -10,10 +10,6 @@ This template deploys Oracle MySQL Database V5.7 and Apache HTTP Server V2.4 on 
 ### Clouds
 
  Amazon<br>
-<br>
-### Template Version
-
-1.0<br>
 <br>
 ### Operating Systems Supported
 
@@ -34,7 +30,7 @@ Oracle MySQL V5.7<br>
 <br>
 ### Default Virtual Machine Settings
 
- t2.medium, vCPU 2, Mem (GiB) 4, EBS (GB) 25<br>
+ t2.medium, vCPU 2, Mem (GiB) 4, EBS (GB) 100<br>
 <br>
 ### Usage and Special Notes
 
@@ -48,7 +44,7 @@ Oracle MySQL V5.7<br>
 
 ### License and Maintainer
 
-Copyright IBM Corp. 2016, 2017 
+Copyright IBM Corp. 2017, 2018 
 
 ### Target Cloud Type
 
