@@ -17,7 +17,7 @@
 # This is a terraform generated template generated from lamp_stack_v1_standalone
 
 ##############################################################
-# Keys - CAMC (public/private) & optional User Key (public) 
+# Keys - CAMC (public/private) & optional User Key (public)
 ##############################################################
 variable "ibm_pm_public_ssh_key_name" {
   description = "Public CAMC SSH key name used to connect to the virtual guest."
@@ -48,7 +48,7 @@ variable "aws_region" {
 }
 
 ##############################################################
-# Define the aws provider 
+# Define the aws provider
 ##############################################################
 provider "aws" {
   region = "${var.aws_region}"
@@ -56,7 +56,7 @@ provider "aws" {
 }
 
 provider "camc" {
-  version = "~> 0.1"
+  version = "~> 0.2"
 }
 
 provider "template" {
@@ -86,7 +86,7 @@ variable "aws_sg_camc_name" {
 }
 
 ##############################################################
-# Define pattern variables 
+# Define pattern variables
 ##############################################################
 ##### unique stack name #####
 variable "ibm_stack_name" {
@@ -753,4 +753,3 @@ output "LAMPNode01_roles" {
 output "stack_id" {
   value = "${var.ibm_stack_id}"
 }
-
