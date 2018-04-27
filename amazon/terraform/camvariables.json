@@ -133,7 +133,7 @@
         },
         {
           "value": "sa-east-1",
-          "label": "South America (São Paulo)"
+          "label": "South America (S\u00e3o Paulo)"
         }
       ],
       "required": true,
@@ -306,6 +306,19 @@
       "default": "defaultUser",
       "hidden": false,
       "label": "First User Name to Access the Sample Database - LAMPNode01",
+      "secured": false,
+      "required": true,
+      "immutable": false,
+      "immutable_after_create": true,
+      "group_name": "lampnode01"
+    },
+    {
+      "name": "LAMPNode01_mysql_config_databases_database_1_users_user_2_name",
+      "type": "string",
+      "description": "Name of the second user which is created and allowed to access the created sample database ",
+      "default": "defaultUser2",
+      "hidden": false,
+      "label": "Second User Name to Access the Sample Database - LAMPNode01",
       "secured": false,
       "required": true,
       "immutable": false,
@@ -507,7 +520,7 @@
     },
     {
       "name": "ibm_sw_repo_password",
-      "type": "string",
+      "type": "password",
       "description": "IBM Software Repo Password",
       "hidden": true,
       "label": "IBM Software Repo Password",
@@ -634,7 +647,7 @@
     },
     {
       "name": "LAMPNode01_mysql_root_password",
-      "type": "string",
+      "type": "password",
       "description": "The password for the MySQL root user",
       "hidden": false,
       "label": "MySQL root password - LAMPNode01",
@@ -642,7 +655,7 @@
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "regex": "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\\\d)(?=.*[$@$!%*?&])[A-Za-z\\\\d$@$!%*?&]{8,}$",
+      "regex": "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&]{8,}$",
       "regexdesc": "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character from supported list '$@$!%*?&'.",
       "group_name": "lampnode01"
     },
@@ -697,21 +710,21 @@
     },
     {
       "name": "LAMPNode01_mysql_config_databases_database_1_users_user_1_password",
-      "type": "string",
+      "type": "password",
       "description": "Password of the first user",
       "hidden": false,
-      "label": "Second User Name to Access the Sample Database - LAMPNode01",
+      "label": "First User Password to Access the Sample Database - LAMPNode01",
       "secured": true,
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "regex": "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\\\d)(?=.*[$@$!%*?&])[A-Za-z\\\\d$@$!%*?&]{8,}$",
+      "regex": "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&]{8,}$",
       "regexdesc": "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character from supported list '$@$!%*?&'.",
       "group_name": "lampnode01"
     },
     {
       "name": "LAMPNode01_mysql_config_databases_database_1_users_user_2_password",
-      "type": "string",
+      "type": "password",
       "description": "Password of the second user",
       "hidden": false,
       "label": "Second User Password to Access the Sample Database - LAMPNode01",
@@ -719,7 +732,7 @@
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "regex": "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\\\d)(?=.*[$@$!%*?&])[A-Za-z\\\\d$@$!%*?&]{8,}$",
+      "regex": "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&]{8,}$",
       "regexdesc": "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character from supported list '$@$!%*?&'.",
       "group_name": "lampnode01"
     },

@@ -20,9 +20,9 @@
 # Keys - CAMC (public/private) & optional User Key (public)
 ##############################################################
 variable "user_public_ssh_key" {
-  type = "string"
+  type        = "string"
   description = "User defined public SSH key used to connect to the virtual machine. The format must be in openSSH."
-  default = "None"
+  default     = "None"
 }
 
 variable "ibm_stack_id" {
@@ -39,7 +39,7 @@ variable "ibm_pm_private_ssh_key" {
 
 variable "allow_unverified_ssl" {
   description = "Communication with vsphere server with self signed certificate"
-  default = "true"
+  default     = "true"
 }
 
 ##############################################################
@@ -47,7 +47,7 @@ variable "allow_unverified_ssl" {
 ##############################################################
 provider "vsphere" {
   allow_unverified_ssl = "${var.allow_unverified_ssl}"
-  version = "~> 1.3"
+  version              = "~> 1.3"
 }
 
 provider "camc" {
@@ -68,283 +68,291 @@ variable "ibm_stack_name" {
 data "vsphere_datacenter" "LAMPNode01_datacenter" {
   name = "${var.LAMPNode01_datacenter}"
 }
+
 data "vsphere_datastore" "LAMPNode01_datastore" {
-  name = "${var.LAMPNode01_root_disk_datastore}"
+  name          = "${var.LAMPNode01_root_disk_datastore}"
   datacenter_id = "${data.vsphere_datacenter.LAMPNode01_datacenter.id}"
 }
+
 data "vsphere_resource_pool" "LAMPNode01_resource_pool" {
-  name = "${var.LAMPNode01_resource_pool}"
+  name          = "${var.LAMPNode01_resource_pool}"
   datacenter_id = "${data.vsphere_datacenter.LAMPNode01_datacenter.id}"
 }
+
 data "vsphere_network" "LAMPNode01_network" {
-  name = "${var.LAMPNode01_network_interface_label}"
+  name          = "${var.LAMPNode01_network_interface_label}"
   datacenter_id = "${data.vsphere_datacenter.LAMPNode01_datacenter.id}"
 }
 
 data "vsphere_virtual_machine" "LAMPNode01_template" {
-  name = "${var.LAMPNode01-image}"
+  name          = "${var.LAMPNode01-image}"
   datacenter_id = "${data.vsphere_datacenter.LAMPNode01_datacenter.id}"
 }
 
 ##### Environment variables #####
 #Variable : ibm_pm_access_token
 variable "ibm_pm_access_token" {
-  type = "string"
+  type        = "string"
   description = "IBM Pattern Manager Access Token"
 }
 
 #Variable : ibm_pm_service
 variable "ibm_pm_service" {
-  type = "string"
+  type        = "string"
   description = "IBM Pattern Manager Service"
 }
 
 #Variable : ibm_sw_repo
 variable "ibm_sw_repo" {
-  type = "string"
+  type        = "string"
   description = "IBM Software Repo Root (https://<hostname>:<port>)"
 }
 
 #Variable : ibm_sw_repo_password
 variable "ibm_sw_repo_password" {
-  type = "string"
+  type        = "string"
   description = "IBM Software Repo Password"
 }
 
 #Variable : ibm_sw_repo_user
 variable "ibm_sw_repo_user" {
-  type = "string"
+  type        = "string"
   description = "IBM Software Repo Username"
-  default = "repouser"
+  default     = "repouser"
 }
-
 
 ##### LAMPNode01 variables #####
 #Variable : LAMPNode01-image
 variable "LAMPNode01-image" {
-  type = "string"
+  type        = "string"
   description = "Operating system image id / template that should be used when creating the virtual image"
 }
 
 #Variable : LAMPNode01-name
 variable "LAMPNode01-name" {
-  type = "string"
+  type        = "string"
   description = "Short hostname of virtual machine"
 }
 
 #Variable : LAMPNode01-os_admin_user
 variable "LAMPNode01-os_admin_user" {
-  type = "string"
+  type        = "string"
   description = "Name of the admin user account in the virtual machine that will be accessed via SSH"
 }
 
 #Variable : LAMPNode01_httpd_data_dir_mode
 variable "LAMPNode01_httpd_data_dir_mode" {
-  type = "string"
+  type        = "string"
   description = "OS Permisssions of data folders"
-  default = "0755"
+  default     = "0755"
 }
 
 #Variable : LAMPNode01_httpd_document_root
 variable "LAMPNode01_httpd_document_root" {
-  type = "string"
+  type        = "string"
   description = "File System Location of the Document Root"
-  default = "/var/www/html5"
+  default     = "/var/www/html5"
 }
 
 #Variable : LAMPNode01_httpd_listen
 variable "LAMPNode01_httpd_listen" {
-  type = "string"
+  type        = "string"
   description = "Listening port to be configured in HTTP server"
-  default = "8080"
+  default     = "8080"
 }
 
 #Variable : LAMPNode01_httpd_log_dir
 variable "LAMPNode01_httpd_log_dir" {
-  type = "string"
+  type        = "string"
   description = "Directory where HTTP Server logs will be sent"
-  default = "/var/log/httpd"
+  default     = "/var/log/httpd"
 }
 
 #Variable : LAMPNode01_httpd_log_level
 variable "LAMPNode01_httpd_log_level" {
-  type = "string"
+  type        = "string"
   description = "Log levels of the http process"
-  default = "info"
+  default     = "info"
 }
 
 #Variable : LAMPNode01_httpd_os_users_web_content_owner_gid
 variable "LAMPNode01_httpd_os_users_web_content_owner_gid" {
-  type = "string"
+  type        = "string"
   description = "Group ID of web content owner to be configured in HTTP server"
-  default = "webmaster"
+  default     = "webmaster"
 }
 
 #Variable : LAMPNode01_httpd_os_users_web_content_owner_home
 variable "LAMPNode01_httpd_os_users_web_content_owner_home" {
-  type = "string"
+  type        = "string"
   description = "Home directory of web content owner to be configured in HTTP server"
-  default = "/home/webmaster"
+  default     = "/home/webmaster"
 }
 
 #Variable : LAMPNode01_httpd_os_users_web_content_owner_ldap_user
 variable "LAMPNode01_httpd_os_users_web_content_owner_ldap_user" {
-  type = "string"
+  type        = "string"
   description = "Use LDAP to authenticate Web Content Owner account on Linux HTTP server as well as web site logins"
-  default = "false"
+  default     = "false"
 }
 
 #Variable : LAMPNode01_httpd_os_users_web_content_owner_name
 variable "LAMPNode01_httpd_os_users_web_content_owner_name" {
-  type = "string"
+  type        = "string"
   description = "User ID of web content owner to be configured in HTTP server"
-  default = "webmaster"
+  default     = "webmaster"
 }
 
 #Variable : LAMPNode01_httpd_os_users_web_content_owner_shell
 variable "LAMPNode01_httpd_os_users_web_content_owner_shell" {
-  type = "string"
+  type        = "string"
   description = "Default shell configured on Linux server"
-  default = "/bin/bash"
+  default     = "/bin/bash"
 }
 
 #Variable : LAMPNode01_httpd_php_mod_enabled
 variable "LAMPNode01_httpd_php_mod_enabled" {
-  type = "string"
+  type        = "string"
   description = "Enable PHP in Apache on Linux by Loading the Module"
-  default = "true"
+  default     = "true"
 }
 
 #Variable : LAMPNode01_httpd_server_admin
 variable "LAMPNode01_httpd_server_admin" {
-  type = "string"
+  type        = "string"
   description = "Email Address of the Webmaster"
-  default = "webmaster@orpheus.ibm.com"
+  default     = "webmaster@orpheus.ibm.com"
 }
 
 #Variable : LAMPNode01_httpd_server_name
 variable "LAMPNode01_httpd_server_name" {
-  type = "string"
+  type        = "string"
   description = "The Name of the HTTP Server, normally the FQDN of server."
-  default = "orpheus.ibm.com"
+  default     = "orpheus.ibm.com"
 }
 
 #Variable : LAMPNode01_httpd_version
 variable "LAMPNode01_httpd_version" {
-  type = "string"
+  type        = "string"
   description = "Version of HTTP Server to be installed."
-  default = "2.4"
+  default     = "2.4"
 }
 
 #Variable : LAMPNode01_httpd_vhosts_enabled
 variable "LAMPNode01_httpd_vhosts_enabled" {
-  type = "string"
+  type        = "string"
   description = "Allow to configure virtual hosts to run multiple websites on the same HTTP server"
-  default = "false"
+  default     = "false"
 }
 
 #Variable : LAMPNode01_mysql_config_data_dir
 variable "LAMPNode01_mysql_config_data_dir" {
-  type = "string"
+  type        = "string"
   description = "Directory to store information managed by MySQL server"
-  default = "/var/lib/mysql"
+  default     = "/var/lib/mysql"
 }
 
 #Variable : LAMPNode01_mysql_config_databases_database_1_database_name
 variable "LAMPNode01_mysql_config_databases_database_1_database_name" {
-  type = "string"
+  type        = "string"
   description = "Create a sample database in MySQL"
-  default = "default_database"
+  default     = "default_database"
 }
 
 #Variable : LAMPNode01_mysql_config_databases_database_1_users_user_1_name
 variable "LAMPNode01_mysql_config_databases_database_1_users_user_1_name" {
-  type = "string"
+  type        = "string"
   description = "Name of the first user which is created and allowed to access the created sample database "
-  default = "defaultUser"
+  default     = "defaultUser"
+}
+
+#Variable : LAMPNode01_mysql_config_databases_database_1_users_user_2_name
+variable "LAMPNode01_mysql_config_databases_database_1_users_user_2_name" {
+  type        = "string"
+  description = "Name of the second user which is created and allowed to access the created sample database "
+  default     = "defaultUser2"
 }
 
 #Variable : LAMPNode01_mysql_config_databases_database_1_users_user_1_password
 variable "LAMPNode01_mysql_config_databases_database_1_users_user_1_password" {
-  type = "string"
-  description = "Name of the second user which is created and allowed to access the created sample database"
+  type        = "string"
+  description = "Password of the first user which is created and allowed to access the created sample database"
 }
 
 #Variable : LAMPNode01_mysql_config_databases_database_1_users_user_2_password
 variable "LAMPNode01_mysql_config_databases_database_1_users_user_2_password" {
-  type = "string"
+  type        = "string"
   description = "Password of the second user"
 }
 
 #Variable : LAMPNode01_mysql_config_log_file
 variable "LAMPNode01_mysql_config_log_file" {
-  type = "string"
+  type        = "string"
   description = "Log file configured in MySQL"
-  default = "/var/log/mysqld.log"
+  default     = "/var/log/mysqld.log"
 }
 
 #Variable : LAMPNode01_mysql_config_port
 variable "LAMPNode01_mysql_config_port" {
-  type = "string"
+  type        = "string"
   description = "Listen port to be configured in MySQL"
-  default = "3306"
+  default     = "3306"
 }
 
 #Variable : LAMPNode01_mysql_install_from_repo
 variable "LAMPNode01_mysql_install_from_repo" {
-  type = "string"
+  type        = "string"
   description = "Install MySQL from secure repository server or yum repo"
-  default = "true"
+  default     = "true"
 }
 
 #Variable : LAMPNode01_mysql_os_users_daemon_gid
 variable "LAMPNode01_mysql_os_users_daemon_gid" {
-  type = "string"
+  type        = "string"
   description = "Group ID of the default OS user to be used to configure MySQL"
-  default = "mysql"
+  default     = "mysql"
 }
 
 #Variable : LAMPNode01_mysql_os_users_daemon_home
 variable "LAMPNode01_mysql_os_users_daemon_home" {
-  type = "string"
+  type        = "string"
   description = "Home directory of the default OS user to be used to configure MySQL"
-  default = "/home/mysql"
+  default     = "/home/mysql"
 }
 
 #Variable : LAMPNode01_mysql_os_users_daemon_ldap_user
 variable "LAMPNode01_mysql_os_users_daemon_ldap_user" {
-  type = "string"
+  type        = "string"
   description = "A flag which indicates whether to create the MQ USer locally, or utilise an LDAP based user."
-  default = "false"
+  default     = "false"
 }
 
 #Variable : LAMPNode01_mysql_os_users_daemon_name
 variable "LAMPNode01_mysql_os_users_daemon_name" {
-  type = "string"
+  type        = "string"
   description = "User Name of the default OS user to be used to configure MySQL"
-  default = "mysql"
+  default     = "mysql"
 }
 
 #Variable : LAMPNode01_mysql_os_users_daemon_shell
 variable "LAMPNode01_mysql_os_users_daemon_shell" {
-  type = "string"
+  type        = "string"
   description = "Default shell configured on Linux server"
-  default = "/bin/bash"
+  default     = "/bin/bash"
 }
 
 #Variable : LAMPNode01_mysql_root_password
 variable "LAMPNode01_mysql_root_password" {
-  type = "string"
+  type        = "string"
   description = "The password for the MySQL root user"
 }
 
 #Variable : LAMPNode01_mysql_version
 variable "LAMPNode01_mysql_version" {
-  type = "string"
+  type        = "string"
   description = "MySQL Version to be installed"
-  default = "5.7.17"
+  default     = "5.7.17"
 }
-
 
 ##### virtualmachine variables #####
 
@@ -353,7 +361,7 @@ variable "LAMPNode01_mysql_version" {
 #########################################################
 
 variable "LAMPNode01-os_password" {
-  type = "string"
+  type        = "string"
   description = "Operating System Password for the Operating System User to access virtual machine"
 }
 
@@ -371,12 +379,12 @@ variable "LAMPNode01_domain" {
 
 variable "LAMPNode01_number_of_vcpu" {
   description = "Number of virtual CPU for the virtual machine, which is required to be a positive Integer"
-  default = "2"
+  default     = "2"
 }
 
 variable "LAMPNode01_memory" {
   description = "Memory assigned to the virtual machine in megabytes. This value is required to be an increment of 1024"
-  default = "4096"
+  default     = "4096"
 }
 
 variable "LAMPNode01_cluster" {
@@ -388,12 +396,12 @@ variable "LAMPNode01_resource_pool" {
 }
 
 variable "LAMPNode01_dns_suffixes" {
-  type = "list"
+  type        = "list"
   description = "Name resolution suffixes for the virtual network adapter"
 }
 
 variable "LAMPNode01_dns_servers" {
-  type = "list"
+  type        = "list"
   description = "DNS servers for the virtual network adapter"
 }
 
@@ -415,7 +423,7 @@ variable "LAMPNode01_ipv4_prefix_length" {
 
 variable "LAMPNode01_adapter_type" {
   description = "Network adapter type for vNIC Configuration"
-  default = "vmxnet3"
+  default     = "vmxnet3"
 }
 
 variable "LAMPNode01_root_disk_datastore" {
@@ -423,63 +431,69 @@ variable "LAMPNode01_root_disk_datastore" {
 }
 
 variable "LAMPNode01_root_disk_keep_on_remove" {
-  type = "string"
+  type        = "string"
   description = "Delete template disk volume when the virtual machine is deleted"
-  default = "false"
+  default     = "false"
 }
 
 variable "LAMPNode01_root_disk_size" {
   description = "Size of template disk volume. Should be equal to template's disk size"
-  default = "100"
+  default     = "100"
 }
 
 # vsphere vm
 resource "vsphere_virtual_machine" "LAMPNode01" {
-  name = "${var.LAMPNode01-name}"
-  folder = "${var.LAMPNode01_folder}"
-  num_cpus = "${var.LAMPNode01_number_of_vcpu}"
-  memory = "${var.LAMPNode01_memory}"
+  name             = "${var.LAMPNode01-name}"
+  folder           = "${var.LAMPNode01_folder}"
+  num_cpus         = "${var.LAMPNode01_number_of_vcpu}"
+  memory           = "${var.LAMPNode01_memory}"
   resource_pool_id = "${data.vsphere_resource_pool.LAMPNode01_resource_pool.id}"
-  datastore_id = "${data.vsphere_datastore.LAMPNode01_datastore.id}"
-  guest_id = "${data.vsphere_virtual_machine.LAMPNode01_template.guest_id}"
+  datastore_id     = "${data.vsphere_datastore.LAMPNode01_datastore.id}"
+  guest_id         = "${data.vsphere_virtual_machine.LAMPNode01_template.guest_id}"
+  scsi_type        = "${data.vsphere_virtual_machine.LAMPNode01_template.scsi_type}"
+
   clone {
     template_uuid = "${data.vsphere_virtual_machine.LAMPNode01_template.id}"
+
     customize {
       linux_options {
-        domain = "${var.LAMPNode01_domain}"
+        domain    = "${var.LAMPNode01_domain}"
         host_name = "${var.LAMPNode01-name}"
       }
-    network_interface {
-      ipv4_address = "${var.LAMPNode01_ipv4_address}"
-      ipv4_netmask = "${var.LAMPNode01_ipv4_prefix_length}"
-    }
-    ipv4_gateway = "${var.LAMPNode01_ipv4_gateway}"
-    dns_suffix_list = "${var.LAMPNode01_dns_suffixes}"
-    dns_server_list = "${var.LAMPNode01_dns_servers}"
+
+      network_interface {
+        ipv4_address = "${var.LAMPNode01_ipv4_address}"
+        ipv4_netmask = "${var.LAMPNode01_ipv4_prefix_length}"
+      }
+
+      ipv4_gateway    = "${var.LAMPNode01_ipv4_gateway}"
+      dns_suffix_list = "${var.LAMPNode01_dns_suffixes}"
+      dns_server_list = "${var.LAMPNode01_dns_servers}"
     }
   }
 
   network_interface {
-    network_id = "${data.vsphere_network.LAMPNode01_network.id}"
+    network_id   = "${data.vsphere_network.LAMPNode01_network.id}"
     adapter_type = "${var.LAMPNode01_adapter_type}"
   }
 
   disk {
-    label = "${var.LAMPNode01-name}.disk0"
-    size = "${var.LAMPNode01_root_disk_size}"
+    label          = "${var.LAMPNode01-name}.disk0"
+    size           = "${var.LAMPNode01_root_disk_size}"
     keep_on_remove = "${var.LAMPNode01_root_disk_keep_on_remove}"
   }
 
   # Specify the connection
   connection {
-    type = "ssh"
-    user = "${var.LAMPNode01-os_admin_user}"
+    type     = "ssh"
+    user     = "${var.LAMPNode01-os_admin_user}"
     password = "${var.LAMPNode01-os_password}"
   }
 
   provisioner "file" {
     destination = "LAMPNode01_add_ssh_key.sh"
-    content     = <<EOF
+
+    content = <<EOF
 # =================================================================
 # Copyright 2017 IBM Corporation
 #
@@ -548,10 +562,9 @@ EOF
   provisioner "remote-exec" {
     inline = [
       "bash -c 'chmod +x LAMPNode01_add_ssh_key.sh'",
-      "bash -c './LAMPNode01_add_ssh_key.sh  \"${var.LAMPNode01-os_admin_user}\" \"${var.user_public_ssh_key}\" \"${var.ibm_pm_public_ssh_key}\">> LAMPNode01_add_ssh_key.log 2>&1'"
+      "bash -c './LAMPNode01_add_ssh_key.sh  \"${var.LAMPNode01-os_admin_user}\" \"${var.user_public_ssh_key}\" \"${var.ibm_pm_public_ssh_key}\">> LAMPNode01_add_ssh_key.log 2>&1'",
     ]
   }
-
 }
 
 #########################################################
@@ -559,12 +572,13 @@ EOF
 #########################################################
 
 resource "camc_bootstrap" "LAMPNode01_chef_bootstrap_comp" {
-  depends_on = ["camc_vaultitem.VaultItem","vsphere_virtual_machine.LAMPNode01"]
-  name = "LAMPNode01_chef_bootstrap_comp"
-  camc_endpoint = "${var.ibm_pm_service}/v1/bootstrap/chef"
-  access_token = "${var.ibm_pm_access_token}"
+  depends_on      = ["camc_vaultitem.VaultItem", "vsphere_virtual_machine.LAMPNode01"]
+  name            = "LAMPNode01_chef_bootstrap_comp"
+  camc_endpoint   = "${var.ibm_pm_service}/v1/bootstrap/chef"
+  access_token    = "${var.ibm_pm_access_token}"
   skip_ssl_verify = true
-  trace = true
+  trace           = true
+
   data = <<EOT
 {
   "os_admin_user": "${var.LAMPNode01-os_admin_user}",
@@ -586,18 +600,18 @@ resource "camc_bootstrap" "LAMPNode01_chef_bootstrap_comp" {
 EOT
 }
 
-
 #########################################################
 ##### Resource : LAMPNode01_httpd24-base-install
 #########################################################
 
 resource "camc_softwaredeploy" "LAMPNode01_httpd24-base-install" {
-  depends_on = ["camc_bootstrap.LAMPNode01_chef_bootstrap_comp"]
-  name = "LAMPNode01_httpd24-base-install"
-  camc_endpoint = "${var.ibm_pm_service}/v1/software_deployment/chef"
-  access_token = "${var.ibm_pm_access_token}"
+  depends_on      = ["camc_bootstrap.LAMPNode01_chef_bootstrap_comp"]
+  name            = "LAMPNode01_httpd24-base-install"
+  camc_endpoint   = "${var.ibm_pm_service}/v1/software_deployment/chef"
+  access_token    = "${var.ibm_pm_access_token}"
   skip_ssl_verify = true
-  trace = true
+  trace           = true
+
   data = <<EOT
 {
   "os_admin_user": "${var.LAMPNode01-os_admin_user}",
@@ -649,18 +663,18 @@ resource "camc_softwaredeploy" "LAMPNode01_httpd24-base-install" {
 EOT
 }
 
-
 #########################################################
 ##### Resource : LAMPNode01_oracle_mysql_base
 #########################################################
 
 resource "camc_softwaredeploy" "LAMPNode01_oracle_mysql_base" {
-  depends_on = ["camc_softwaredeploy.LAMPNode01_httpd24-base-install"]
-  name = "LAMPNode01_oracle_mysql_base"
-  camc_endpoint = "${var.ibm_pm_service}/v1/software_deployment/chef"
-  access_token = "${var.ibm_pm_access_token}"
+  depends_on      = ["camc_softwaredeploy.LAMPNode01_httpd24-base-install"]
+  name            = "LAMPNode01_oracle_mysql_base"
+  camc_endpoint   = "${var.ibm_pm_service}/v1/software_deployment/chef"
+  access_token    = "${var.ibm_pm_access_token}"
   skip_ssl_verify = true
-  trace = true
+  trace           = true
+
   data = <<EOT
 {
   "os_admin_user": "${var.LAMPNode01-os_admin_user}",
@@ -686,6 +700,9 @@ resource "camc_softwaredeploy" "LAMPNode01_oracle_mysql_base" {
             "users": {
               "user_1": {
                 "name": "${var.LAMPNode01_mysql_config_databases_database_1_users_user_1_name}"
+              },
+              "user_2": {
+                "name": "${var.LAMPNode01_mysql_config_databases_database_1_users_user_2_name}"
               }
             }
           }
@@ -736,16 +753,16 @@ resource "camc_softwaredeploy" "LAMPNode01_oracle_mysql_base" {
 EOT
 }
 
-
 #########################################################
 ##### Resource : VaultItem
 #########################################################
 
 resource "camc_vaultitem" "VaultItem" {
-  camc_endpoint = "${var.ibm_pm_service}/v1/vault_item/chef"
-  access_token = "${var.ibm_pm_access_token}"
+  camc_endpoint   = "${var.ibm_pm_service}/v1/vault_item/chef"
+  access_token    = "${var.ibm_pm_access_token}"
   skip_ssl_verify = true
-  trace = true
+  trace           = true
+
   data = <<EOT
 {
   "vault_content": {

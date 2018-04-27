@@ -245,6 +245,13 @@ variable "LAMPNode01_mysql_config_databases_database_1_users_user_1_name" {
   default = "defaultUser"
 }
 
+#Variable : LAMPNode01_mysql_config_databases_database_1_users_user_2_name
+variable "LAMPNode01_mysql_config_databases_database_1_users_user_2_name" {
+  type = "string"
+  description = "Name of the second user which is created and allowed to access the created sample database "
+  default = "defaultUser2"
+}
+
 #Variable : LAMPNode01_mysql_config_databases_database_1_users_user_1_password
 variable "LAMPNode01_mysql_config_databases_database_1_users_user_1_password" {
   type = "string"
@@ -634,6 +641,9 @@ resource "camc_softwaredeploy" "LAMPNode01_oracle_mysql_base" {
             "users": {
               "user_1": {
                 "name": "${var.LAMPNode01_mysql_config_databases_database_1_users_user_1_name}"
+              },
+              "user_2": {
+                "name": "${var.LAMPNode01_mysql_config_databases_database_1_users_user_2_name}"
               }
             }
           }
