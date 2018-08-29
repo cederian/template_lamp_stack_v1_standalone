@@ -458,6 +458,7 @@ resource "aws_instance" "LAMPNode01" {
   connection {
     user = "${var.LAMPNode01-os_admin_user}"
     private_key = "${base64decode(var.ibm_pm_private_ssh_key)}"
+    agent = false
   }
 
   provisioner "file" {
